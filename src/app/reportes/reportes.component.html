@@ -1,3 +1,42 @@
-<p>
-  reportes works!
-</p>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Reporte semanal</h5>
+        <p class="card-text">Se mostrará su reporte semanal</p>
+        <a  class="btn btn-primary">Gracias por su preferencia</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Reporte mensual</h5>
+        <p class="card-text">Se mostrará su reporte mensual</p>
+        <a class="btn btn-primary" onclick="coso()">Gracias por su preferencia</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+    <table>
+      <tr *ngFor="let x of names">
+        <td>{{ x.Name }}</td>
+        <td>{{ x.Country }}</td>
+      </tr>
+    </table>
+    
+    </div>
+    
+    <script>
+    
+    function coso(){
+      $.ajax({
+  url: "bd.php",
+}).done(function($data) {
+  $data.names = response.data.records;
+});
+    }
+
+    </script>

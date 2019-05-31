@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-reportes',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
-
-  constructor() { }
+  private articulos = null;
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    
+  }
+  listar() {
+    return this.http.get('bd.php');
   }
 
 }
