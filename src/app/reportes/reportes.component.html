@@ -1,42 +1,47 @@
+<div class="container pt-5">
 <div class="row">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Reporte semanal</h5>
-        <p class="card-text">Se mostrará su reporte semanal</p>
-        <a  class="btn btn-primary">Gracias por su preferencia</a>
+        <p class="card-text">Se mostrará su reporte de hoy a 7 dias atras</p>
+        <a  class="btn btn-primary" (click)="semana()">Generar</a>
       </div>
+    </div>
+    <div class="col-12 pt-4">
+<table class="w-100" border="solid 1px">
+  <tr>
+    <td>nombre</td>
+    <td>cantidad</td>
+  </tr>
+  <tr *ngFor="let p of pedidosSem">
+    <td>{{p.nombre}}</td>
+    <td>{{p.cantidad}}</td>
+  </tr>
+</table>
     </div>
   </div>
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Reporte mensual</h5>
-        <p class="card-text">Se mostrará su reporte mensual</p>
-        <a class="btn btn-primary" onclick="coso()">Gracias por su preferencia</a>
+        <p class="card-text">Se mostrará su reporte de hoy a 30 dias atras</p>
+        <a class="btn btn-primary" (click)="mes()">Generar</a>
       </div>
     </div>
+    <div class="col-12 pt-4">
+        <table class="w-100" border="1px">
+          <tr>
+            <td>nombre</td>
+            <td>cantidad</td>
+          </tr>
+          <tr *ngFor="let p of pedidosMes">
+            <td>{{p.nombre}}</td>
+            <td>{{p.cantidad}}</td>
+          </tr>
+        </table>
+            </div>
   </div>
 </div>
-<div ng-app="myApp" ng-controller="customersCtrl">
+</div>
 
-    <table>
-      <tr *ngFor="let x of names">
-        <td>{{ x.Name }}</td>
-        <td>{{ x.Country }}</td>
-      </tr>
-    </table>
-    
-    </div>
-    
-    <script>
-    
-    function coso(){
-      $.ajax({
-  url: "bd.php",
-}).done(function($data) {
-  $data.names = response.data.records;
-});
-    }
-
-    </script>

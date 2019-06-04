@@ -1,15 +1,62 @@
-<div class="container" style="text-align: center;">
-  <ul class="list-group">
-  <li class="list-group-item"> <strong>Listado de pedidos</strong> </li>
+<div class="container-fluid" style="text-align: center;" >
+  <div id="cont" class="pt-4">
+    <table border="1px" class="" width="100%">
+      <tr>
+        <td>nombre</td>
+        <td>telefono</td>
+        <td>cantidad</td>
+        <td>descripcion</td>
+        <td>fecha</td>
+        <td>borrar</td>
+      </tr>
+      <tr *ngFor="let p of pedidos">
+        
+        <td>{{p.nombre}}</td>
+        <td>{{p.telefono}}</td>
+        <td>{{p.cantidad}}</td>
+        <td>{{p.descripcion}}</td>
+        <td>{{p.fecha}}</td>
+        <td><button (click)="bajaPedido(p.id)" style="background-color: white;border: 0px;"><i class="fas fa-times"></i></button></td>
+      </tr>
+    </table>
+  <!--li class="list-group-item"> <strong>Listado de pedidos</strong> </li>
+  <ul class="list-group" *ngFor="let p of pedidos">
+  <li class="list-group-item list-group-item-primary"> <a [routerLink]="['/']">{{p.nombre}}&nbsp;{{p.telefono}}&nbsp;{{p.cantidad}}&nbsp;{{p.descripcion}}</a></li-->
+<!--/ul-->
+<div align="center" class="p-4">
+  <button (click)="generarPDF()" class="btn btn-info">Crear PDF</button>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+<div class="col-6">
+  <h2>Añadir nuevo pedido</h2>
+<form style="text-align: left;">
+  <div class="form-group " >
+    <label for="exampleInputEmail1">nombre</label>
+    <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="NOMBRE" name="no,bre" [(ngModel)]="pedido.nombre">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">telefono</label>
+    <input type="text" class="form-control" id="exampleInputEmail1"  placeholder="TELEFONO" name="telefono" [(ngModel)]="pedido.telefono">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">cantidad</label>
+    <input type="number" class="form-control" id="exampleInputEmail1"  placeholder="CANTIDAD" name="cantidad" [(ngModel)]="pedido.cantidad">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">descripcion</label>
+    <textarea type="textarea" class="form-control" id="exampleInputEmail1"  placeholder="DESCRIPCION" name="descripcion" [(ngModel)]="pedido.descripcion"></textarea>
+  </div>
+  <div class="form-check">
+    <!--input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <--label class="form-check-label" for="exampleCheck1" >Check me out</label-->
+  </div>
+  <button (click)="AltaPedido()"class="btn btn-primary">Submit</button>
+</form>
+</div>
+  </div>
 
-  
-  <li class="list-group-item list-group-item-primary"> <a [routerLink]="['/home']">Pedido1</a></li>
-  <li class="list-group-item list-group-item-secondary"> <a [routerLink]="['/home']">Pedido 2</a></li>
-  <li class="list-group-item list-group-item-success"><a [routerLink]="['/home']">Pedido 3</a></li>
-  <li class="list-group-item list-group-item-danger"><a [routerLink]="['/home']">Pedido 4</a></li>
-  <li class="list-group-item list-group-item-warning"><a  [routerLink]="['/home']">Pedido 5</a></li>
-  <li class="list-group-item list-group-item-info"><a  [routerLink]="['/home']">Pedido 6</a></li>
-  <li class="list-group-item list-group-item-dark"><a  [routerLink]="['/home']">Pedido 7</a></li>
-</ul>
+</div>
 
 </div>

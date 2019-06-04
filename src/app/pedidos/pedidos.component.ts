@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuariosService } from "../usuarios.service";
+import * as jsPDF from 'jspdf';
+
+declare var jQuery:any;
+declare var $:any;
+
 
 @Component({
   selector: 'app-pedidos',
@@ -6,10 +12,66 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  pedidos=null;
+  pedido={
+    nombre:null,
+    telefono:null,
+    cantidad:null,
+    descripcion:null
   }
+  constructor(private usuariosServicio:UsuariosService) { }
+  generarPDF(){
+    var doc = new jsPDF();
+   
+    doc.text("nombre         |   telefono        |      cantidad      |      descripcion ",30,20);
+    var i=40;
+  /* this.pedidos.forEach(function (value) {
+    var text=("NOMBRE: "+value.nombre+" TELEFONO: "+value.telefono+" CANTIDAD: "+value.cantidad+" DESCRIPCION: "+value.descripcion);
+    var split = doc.splitTextToSize(text, 180);
+    doc.text(split,10,i);
+    i=i+20;
+  
+  });*/
+  doc.fromHTML($('#cont').html(), 15, 15, {
+    'width': 1800
+});
+    doc.save('test.pdf');
+    
+ 
+}
+  ngOnInit() {
+    this.obtenerPedidos();
+  }
+  AltaPedido() {
+    this.usuariosServicio.altaPedido(this.pedido).subscribe(
+      datos => {
+        if(datos['resultado'] == 'OK') {
+          alert(datos['mensaje']);
+          this.obtenerPedidos();
+        }
+      }
+    );
+    
+  }
+  obtenerPedidos() {
+    this.usuariosServicio.obternerPedidos().subscribe(
+      result => this.pedidos = result,
+      
+    );
+    
+  }
+  bajaPedido(idPedido) {
+    
+    this.usuariosServicio.bajaPedido(idPedido).subscribe(
+      datos => {
+        if(datos['resultado'] == 'OK') {
+          alert(datos['mensaje']);
+          this.obtenerPedidos();
+        }
+      }
+    )
+    ;
+  }
+  
 
 }
