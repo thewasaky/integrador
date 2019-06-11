@@ -1,6 +1,6 @@
 <div class="container-fluid" style="text-align: center;" >
   <div id="cont" class="pt-4">
-    <table border="1px" class="" width="100%">
+    <table border="1px" class="" width="100%" >
       <tr>
         <td>nombre</td>
         <td>telefono</td>
@@ -9,7 +9,7 @@
         <td>fecha</td>
         <td>borrar</td>
       </tr>
-      <tr *ngFor="let p of pedidos">
+      <tr *ngFor="let p of pedidos" >
         
         <td>{{p.nombre}}</td>
         <td>{{p.telefono}}</td>
@@ -19,17 +19,18 @@
         <td><button (click)="bajaPedido(p.id)" style="background-color: white;border: 0px;"><i class="fas fa-times"></i></button></td>
       </tr>
     </table>
+    
   <!--li class="list-group-item"> <strong>Listado de pedidos</strong> </li>
   <ul class="list-group" *ngFor="let p of pedidos">
   <li class="list-group-item list-group-item-primary"> <a [routerLink]="['/']">{{p.nombre}}&nbsp;{{p.telefono}}&nbsp;{{p.cantidad}}&nbsp;{{p.descripcion}}</a></li-->
 <!--/ul-->
 <div align="center" class="p-4">
-  <button (click)="generarPDF()" class="btn btn-info">Crear PDF</button>
+  <button (click)="generarPDF()" class="btn btn-info">Crear Hoja de pedidos para hoy</button>
   </div>
 </div>
 <div class="container">
   <div class="row">
-<div class="col-6">
+<div class="col-12">
   <h2>Añadir nuevo pedido</h2>
 <form style="text-align: left;">
   <div class="form-group " >

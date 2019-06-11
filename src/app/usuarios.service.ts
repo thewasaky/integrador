@@ -21,7 +21,7 @@ url="http://localhost/pruebaphp/";
     return this.http.get(`${this.url}ObtenerPedidosMensual.php`);
   }
    altaUsuarios(usuario){
-     return this.http.post(`${this.url}AltaUsuario.php`,JSON.stringify(usuario));
+    return this.http.post(`${this.url}AltaUsuario.php`,JSON.stringify(usuario));
    }
    altaPedido(pedido){
     return this.http.post(`${this.url}AltaPedido.php`,JSON.stringify(pedido));

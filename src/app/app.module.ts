@@ -9,13 +9,18 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { HomeComponent } from './home/home.component';
 import { Services } from '@angular/core/src/view';
+import { InventarioComponent } from './inventario/inventario.component';
+import { ClientesComponent } from './clientes/clientes.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PedidosComponent,
     ReportesComponent,
-    HomeComponent
+    HomeComponent,
+    InventarioComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,

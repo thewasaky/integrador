@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from "../usuarios.service";
+import { ActivatedRoute, Params } from '@angular/router';
 import * as jsPDF from 'jspdf';
 
 declare var jQuery:any;
@@ -14,12 +15,15 @@ declare var $:any;
 export class PedidosComponent implements OnInit {
   pedidos=null;
   pedido={
+    idUsuario:null,
     nombre:null,
     telefono:null,
     cantidad:null,
     descripcion:null
   }
-  constructor(private usuariosServicio:UsuariosService) { }
+  constructor(private usuariosServicio:UsuariosService, private rutaActiva: ActivatedRoute) { 
+    this.pedido.idUsuario=this.rutaActiva.snapshot.params.idUsuario;
+  }
   generarPDF(){
     var doc = new jsPDF();
    
@@ -67,6 +71,8 @@ export class PedidosComponent implements OnInit {
         if(datos['resultado'] == 'OK') {
           alert(datos['mensaje']);
           this.obtenerPedidos();
+        }else if(datos['resultado']=='NO OK'){
+             alert(datos['mensaje']);
         }
       }
     )
