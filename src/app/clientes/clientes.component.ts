@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuariosService } from "../usuarios.service";
 
 @Component({
   selector: 'app-clientes',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent implements OnInit {
-
-  constructor() { }
+  cliente=null;
+  tacos=null;
+  constructor(private usuariosServicio:UsuariosService) { }
 
   ngOnInit() {
+    this.obtenerClientes();
   }
-
+  obtenerClientes() {
+    this.usuariosServicio.obternerClientes().subscribe(
+      result => this.cliente = result
+    );
+  }
+  SeleccionarCliente(idCliente){
+    this.usuariosServicio.seleccionarPedidosCliente(idCliente).subscribe(
+      result => this.tacos=result
+    );
+    }
+  
 }

@@ -19,7 +19,6 @@ export class ReportesComponent implements OnInit {
   generarReporteSemanal() {
     this.usuariosServicio.obternerPedidosSemanal().subscribe(
       result => this.pedidosSem= result,
-      
     );
     
   }
@@ -40,32 +39,64 @@ export class ReportesComponent implements OnInit {
 
   generarPDF(){
     var doc = new jsPDF();
-    doc.text("nombre         |   telefono        |      cantidad      |      descripcion ",30,20);
-    var i=40;
+     var i=40;
+     var num=1;
    this.pedidosSem.forEach(function (value) {
-    var text=("NOMBRE: "+value.nombre+" TELEFONO: "+value.telefono+" CANTIDAD: "+value.cantidad+" DESCRIPCION: "+value.descripcion);
+    var text=("PEDIDO:"+num);
+    var split = doc.splitTextToSize(text, 180);
+    doc.text(split,10,i);
+    i=i+10;
+    var text=("NOMBRE: "+value.nombre);
+    var split = doc.splitTextToSize(text, 180);
+    doc.text(split,10,i);
+    i=i+10;
+    var text=("TELÉFONO: "+value.telefono);
+    var split = doc.splitTextToSize(text, 180);
+    doc.text(split,10,i);
+    i=i+10;
+    var text=("CANTIDAD: "+value.cantidad);
+    var split = doc.splitTextToSize(text, 180);
+    doc.text(split,10,i);
+    i=i+10;
+    var text=("DESCRIPCIÓN: "+value.descripcion);
     var split = doc.splitTextToSize(text, 180);
     doc.text(split,10,i);
     i=i+20;
-  
+    num++;
   });
   
-    doc.save('test.pdf');
+    doc.save('ReporteSemanal.pdf');
    
 }
 generarPDFMes(){
   var doc = new jsPDF();
-  doc.text("nombre         |   telefono        |      cantidad      |      descripcion ",30,20);
-  var i=40;
+   var i=40;
+   var num=1;
  this.pedidosMes.forEach(function (value) {
-  var text=("NOMBRE: "+value.nombre+" TELEFONO: "+value.telefono+" CANTIDAD: "+value.cantidad+" DESCRIPCION: "+value.descripcion);
+  var text=("PEDIDO:"+num);
   var split = doc.splitTextToSize(text, 180);
   doc.text(split,10,i);
-  i=i+20;
-
+  i=i+10;
+  var text=("NOMBRE: "+value.nombre);
+    var split = doc.splitTextToSize(text, 180);
+    doc.text(split,10,i);
+    i=i+10;
+    var text=("TELÉFONO: "+value.telefono);
+    var split = doc.splitTextToSize(text, 180);
+    doc.text(split,10,i);
+    i=i+10;
+    var text=("CANTIDAD: "+value.cantidad);
+    var split = doc.splitTextToSize(text, 180);
+    doc.text(split,10,i);
+    i=i+10;
+    var text=("DESCRIPCIÓN: "+value.descripcion);
+    var split = doc.splitTextToSize(text, 180);
+    doc.text(split,10,i);
+    i=i+20;
+  num++;
 });
 
-  doc.save('test.pdf');
+  doc.save('reporteMensual.pdf');
   
 }
   

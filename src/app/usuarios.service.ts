@@ -38,4 +38,10 @@ url="http://localhost/pruebaphp/";
    editarUsuario(usuario){
      return this.http.post(`${this.url}EditarUsuario.php`,JSON.stringify(usuario));
    }
+   obternerClientes(){
+    return this.http.get(`${this.url}ObtenerClientes.php`);
+  }
+  seleccionarPedidosCliente(id:number){
+    return this.http.get(`${this.url}SeleccionarPedidosCliente.php?idUsuario=${id}`);
+  }
 }
