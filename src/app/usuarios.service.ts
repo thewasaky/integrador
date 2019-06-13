@@ -20,8 +20,8 @@ url="http://localhost/pruebaphp/";
   obternerPedidosMensual(){
     return this.http.get(`${this.url}ObtenerPedidosMensual.php`);
   }
-   altaUsuarios(usuario){
-    return this.http.post(`${this.url}AltaUsuario.php`,JSON.stringify(usuario));
+   altaUsuarios(usuarioRegister){
+    return this.http.post(`${this.url}AltaUsuarios.php`,JSON.stringify(usuarioRegister));
    }
    altaPedido(pedido){
     return this.http.post(`${this.url}AltaPedido.php`,JSON.stringify(pedido));
@@ -43,5 +43,11 @@ url="http://localhost/pruebaphp/";
   }
   seleccionarPedidosCliente(id:number){
     return this.http.get(`${this.url}SeleccionarPedidosCliente.php?idUsuario=${id}`);
+  }
+  editarPedido(pedido){
+    return this.http.post(`${this.url}EditarPedido.php`,JSON.stringify(pedido));
+  }
+  seleccionarPedido(idUsuario:number){
+    return this.http.get(`${this.url}SeleccionarPedido.php?idPedido=${idUsuario}`);
   }
 }

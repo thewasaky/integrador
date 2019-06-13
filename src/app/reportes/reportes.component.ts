@@ -39,7 +39,9 @@ export class ReportesComponent implements OnInit {
 
   generarPDF(){
     var doc = new jsPDF();
-     var i=40;
+    var i=20;
+   doc.text("Pizza Mía Reporte Semanal",70,i);
+   i=i+20;
      var num=1;
    this.pedidosSem.forEach(function (value) {
     var text=("PEDIDO:"+num);
@@ -63,14 +65,19 @@ export class ReportesComponent implements OnInit {
     doc.text(split,10,i);
     i=i+20;
     num++;
-  });
+    if(i>=280){
+      doc.addPage();
+      i=40;
+    }});
   
     doc.save('ReporteSemanal.pdf');
    
 }
 generarPDFMes(){
   var doc = new jsPDF();
-   var i=40;
+   var i=20;
+   doc.text("Pizza Mía Reporte Mensual",70,i);
+   i=i+20;
    var num=1;
  this.pedidosMes.forEach(function (value) {
   var text=("PEDIDO:"+num);
@@ -94,6 +101,10 @@ generarPDFMes(){
     doc.text(split,10,i);
     i=i+20;
   num++;
+  if(i>=280){
+    doc.addPage();
+    i=40;
+  }
 });
 
   doc.save('reporteMensual.pdf');

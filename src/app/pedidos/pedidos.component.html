@@ -8,6 +8,7 @@
         <td>Descripción</td>
         <td>Fecha</td>
         <td>Borrar</td>
+        <td>Editar</td>
       </tr>
       <tr *ngFor="let p of pedidos" >
         
@@ -17,6 +18,8 @@
         <td>{{p.descripcion}}</td>
         <td>{{p.fecha}}</td>
         <td><button (click)="bajaPedido(p.id)" style="background-color: white;border: 0px;"><i class="fas fa-times"></i></button></td>
+        <td><button (click)="BuscarPedido(p.id)" style="background-color: white;border: 0px;"><i class="fas fa-edit"></i></button></td>
+        
       </tr>
     </table>
     
@@ -53,7 +56,12 @@
     <!--input type="checkbox" class="form-check-input" id="exampleCheck1">
     <--label class="form-check-label" for="exampleCheck1" >Check me out</label-->
   </div>
-  <button (click)="AltaPedido()"class="btn btn-primary">Agregar</button>
+  <button (click)="AltaPedido()"class="btn btn-primary" *ngIf="up==true; else date">Agregar</button>
+  <ng-template #date>
+    <button (click)="editarPedido()"class="btn btn-primary" >actualizar</button>
+    &nbsp;<button (click)="nuevoPedido()"class="btn btn-primary" >nuevo pedido</button>
+  
+  </ng-template>
 </form>
 </div>
   </div>

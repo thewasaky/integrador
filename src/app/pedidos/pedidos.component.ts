@@ -16,11 +16,13 @@ export class PedidosComponent implements OnInit {
   pedidos=null;
   pedido={
     idUsuario:null,
+    id:null,
     nombre:null,
     telefono:null,
     cantidad:null,
     descripcion:null
   }
+  up=true;
   constructor(private usuariosServicio:UsuariosService, private rutaActiva: ActivatedRoute) { 
     this.pedido.idUsuario=this.rutaActiva.snapshot.params.idUsuario;
   }
@@ -36,8 +38,8 @@ export class PedidosComponent implements OnInit {
     i=i+20;
   
   });*/
-  doc.fromHTML($('#cont').html(), 15, 15, {
-    'width': 1800
+  doc.fromHTML($('#cont').get(0), 15, 15, {
+    'width': '1800px'
 });
     doc.save('test.pdf');
     
@@ -78,6 +80,37 @@ export class PedidosComponent implements OnInit {
     )
     ;
   }
+  editarPedido(){
+    this.usuariosServicio.editarPedido(this.pedido).subscribe(
+      datos => {
+        if(datos['resultado'] == 'OK') {
+          alert(datos['mensaje']);
+          this.obtenerPedidos();
+        }else if(datos['resultado']=='NO OK'){
+             alert(datos['mensaje']);
+        }
+      }
+    )
+    ;
+
+  }
+ BuscarPedido(idPedido){
+    this.usuariosServicio.seleccionarPedido(idPedido).subscribe(
+      result=>this.pedido=result[0]
+    );
+    this.up=false;
+    }
+    nuevoPedido(){
+      this.up=true;
+      this.pedido={
+        idUsuario:this.rutaActiva.snapshot.params.idUsuario,
+        id:null,
+        nombre:null,
+        telefono:null,
+        cantidad:null,
+        descripcion:null
+      }
+    }
   
 
 }

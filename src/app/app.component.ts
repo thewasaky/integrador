@@ -18,6 +18,11 @@ export class AppComponent implements OnInit{
     email:null,
     password:null
   }
+  usuarioRegister={
+    nombre:null,
+    email:null,
+    password:null
+  }
  LogedIn=false;
  testini=true;
  
@@ -56,9 +61,7 @@ export class AppComponent implements OnInit{
   SeleccionarUsuario(email,password){
     this.usuariosServicio.seleccionarUsuario(email,password).subscribe(
       result=>this.usuario=result[0],
-      
       ()=>{
-      
      
       this.changeLoged();
     }
@@ -88,12 +91,16 @@ export class AppComponent implements OnInit{
       
     );
   }
-  login(){
-    if(this.usuario.nombre!=null){
-      return true;
-    }else{
-      return false;
-    }
+ 
+  AltaUsuario() {
+    this.usuariosServicio.altaUsuarios(this.usuarioRegister).subscribe(
+      datos => {
+        if(datos['resultado'] == 'OK') {
+          alert(datos['mensaje']);
+        }
+      }
+    );
+    document.getElementById('botoncerrar2').click();
   }
  
   
