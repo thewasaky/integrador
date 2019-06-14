@@ -10,17 +10,28 @@ import * as jsPDF from 'jspdf';
 export class ReportesComponent implements OnInit {
   pedidosSem = null;
   pedidosMes=null;
-  constructor(private usuariosServicio:UsuariosService) { }
-
+  pedidosDia=null;
+  pedidosDiaEspecifico=null;
+   f = new Date();
+  fecha =null;
+  
+  constructor(private usuariosServicio:UsuariosService) {  }
+  
   ngOnInit() {    
     this.generarReporteMensual();
     this.generarReporteSemanal();
+    this.generarReporteDia();
   }
   generarReporteSemanal() {
     this.usuariosServicio.obternerPedidosSemanal().subscribe(
       result => this.pedidosSem= result,
     );
     
+  }
+  mesFull(mes:number):string{
+    if(mes<=9){
+      return "0"+mes;
+    }
   }
   semana(){
    
@@ -30,9 +41,35 @@ export class ReportesComponent implements OnInit {
 
     this.generarPDFMes();
   }
+  dia(){
+
+    this.generarPDFDia();
+  }
+  diaEspecifico(){
+
+    this.generarPDFDiaEspecifico();
+  }
+
   generarReporteMensual(){
     this.usuariosServicio.obternerPedidosMensual().subscribe(
       result => this.pedidosMes= result,
+    );
+    
+  }
+  generarReporteDia(){
+    this.usuariosServicio.obternerPedidosDia().subscribe(
+      result => this.pedidosDia= result,
+    );
+    
+  }
+  generarReporteDiaEspecifico(){
+    this.usuariosServicio.obternerPedidosDiaEspecifico(this.fecha).subscribe(
+      result => {this.pedidosDiaEspecifico= result},
+      error => {
+        
+        this.pedidosDiaEspecifico = null;
+
+    }
     );
     
   }
@@ -110,6 +147,78 @@ generarPDFMes(){
   doc.save('reporteMensual.pdf');
   
 }
-  
+ 
+generarPDFDia(){
+  var doc = new jsPDF();
+  var i=20;
+ doc.text("Pizza Mía Reporte Semanal",70,i);
+ i=i+20;
+   var num=1;
+ this.pedidosDia.forEach(function (value) {
+  var text=("PEDIDO:"+num);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+10;
+  var text=("NOMBRE: "+value.nombre);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+10;
+  var text=("TELÉFONO: "+value.telefono);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+10;
+  var text=("CANTIDAD: "+value.cantidad);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+10;
+  var text=("DESCRIPCIÓN: "+value.descripcion);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+20;
+  num++;
+  if(i>=280){
+    doc.addPage();
+    i=40;
+  }});
+
+  doc.save('ReporteDia.pdf');
+ 
+}
+generarPDFDiaEspecifico(){
+  var doc = new jsPDF();
+  var i=20;
+ doc.text("Pizza Mía Reporte Semanal",70,i);
+ i=i+20;
+   var num=1;
+ this.pedidosDiaEspecifico.forEach(function (value) {
+  var text=("PEDIDO:"+num);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+10;
+  var text=("NOMBRE: "+value.nombre);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+10;
+  var text=("TELÉFONO: "+value.telefono);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+10;
+  var text=("CANTIDAD: "+value.cantidad);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+10;
+  var text=("DESCRIPCIÓN: "+value.descripcion);
+  var split = doc.splitTextToSize(text, 180);
+  doc.text(split,10,i);
+  i=i+20;
+  num++;
+  if(i>=280){
+    doc.addPage();
+    i=40;
+  }});
+
+  doc.save('ReporteDiaEspecifico.pdf');
+ 
+}
 
 }

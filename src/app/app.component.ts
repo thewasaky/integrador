@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
   }
  LogedIn=false;
  testini=true;
- 
+ aux=0;
   constructor(private usuariosServicio:UsuariosService,private router: Router){
     
   }
@@ -54,36 +54,46 @@ export class AppComponent implements OnInit{
     this.usuario.email=null;
     this.usuario.nombre=null;
     this.usuario.password=null;
+    this.aux=0;
     alert('Sesión cerrada');
     this.router.navigate(['/home']);
   }
 
   SeleccionarUsuario(email,password){
     this.usuariosServicio.seleccionarUsuario(email,password).subscribe(
-      result=>this.usuario=result[0],
-      ()=>{
+      result=>{this.usuario=result[0];
+        this.changeLoged();
+      },
+      error=>{
+        alert('usuario o contraseña incorrecto')
+      },
+      
      
-      this.changeLoged();
-    }
+      
+    
       
     );
     
-    if(this.testini){
-      
-      document.getElementById("ini").click();
-      
-    }
+    
   }
   changeLoged(){
     if(this.testini){
       
-      document.getElementById("ini").click();
+     // document.getElementById("ini").click();
       this.testini=false;
     }
-    
+    if(this.usuario.idUsuario!=null){
     this.LogedIn=true;
     document.getElementById("cerrarModal").click();
-    
+    }else if(this.aux==0){
+      alert('Usuario o contraseña incorrecto');
+      this.aux=1;
+    }
+    if(this.aux==3){
+      alert('Usuario o contraseña incorrecto');
+      this.aux=1;
+    }
+    this.aux++;
   }
   obtenerUsuarios() {
     this.usuariosServicio.obternerUsuarios().subscribe(

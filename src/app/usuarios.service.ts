@@ -50,4 +50,10 @@ url="http://localhost/pruebaphp/";
   seleccionarPedido(idUsuario:number){
     return this.http.get(`${this.url}SeleccionarPedido.php?idPedido=${idUsuario}`);
   }
+  obternerPedidosDia(){
+    return this.http.get(`${this.url}ObtenerPedidosDia.php`);
+  }
+  obternerPedidosDiaEspecifico(fecha:Date){
+    return this.http.get(`${this.url}ObtenerPedidosDiaEspecifico.php?fecha=${fecha}`);
+  }
 }

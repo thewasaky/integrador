@@ -103,7 +103,7 @@
             <--label class="form-check-label" for="exampleCheck1" >Check me out</label-->
           </div>
           <button id="ini" (click)="SeleccionarUsuario(usuario.email,usuario.password)"class="btn btn-primary">LogIn</button>
-          <p><a data-toggle="modal" data-target="#exampleModal2">¿No tienes usuario? Registrate ahora dando click aqui</a></p>
+          <a class="classa" data-toggle="modal" data-target="#exampleModal2">¿No tienes usuario? Registrate ahora dando click aqui</a>
         </form>
       </div>
       <div class="modal-footer">
@@ -113,6 +113,7 @@
     </div>
   </div>
 </div>
+<!-- Modal register -->
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -152,39 +153,6 @@
 
 
 <router-outlet></router-outlet>
-<!--table border="1px"  *ngIf="login(); else sin">
-  <tr>
-    <td>idUsuario</td>
-    <td>nombre</td>
-    <td>email</td>
-  </tr>
-  <tr >
-    <td>{{usuario.idUsuario}}</td>
-    <td>{{usuario.nombre}}</td>
-    <td>{{usuario.email}}</td>
-    
-  </tr>
-</table-->
-<!--ng-template #sin>
-  <div id="contenido">
-      <table border="1px">
-        <tr>
-          <td>idUsuario</td>
-          <td>nombre</td>
-          <td>email</td>
-        </tr>
-        <tr *ngFor="let user of usuarios">
-          <td>{{user.idUsuario}}</td>
-          <td>{{user.nombre}}</td>
-          <td>{{user.email}}</td>
-          
-        </tr>
-      </table>
-  </div>
-  
-
-</ng-template-->
-
 
 
   
