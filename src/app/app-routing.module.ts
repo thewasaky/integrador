@@ -6,7 +6,7 @@ import { HomeComponent } from "./home/home.component";
 import { ClientesComponent } from "./clientes/clientes.component";
 import { InventarioComponent } from "./inventario/inventario.component";
 
-
+//en esta parte se definen las rutas de la pagina 
 const routes: Routes = [
   {path:"pedidos/:idUsuario", component:PedidosComponent},
   {path:"reportes",component:ReportesComponent},

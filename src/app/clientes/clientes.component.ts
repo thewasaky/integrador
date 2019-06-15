@@ -6,6 +6,8 @@ import { UsuariosService } from "../usuarios.service";
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.css']
 })
+//esta clase ees para mostrar los clientes que esten registrados y los pedidos que han realizado
+//por ahora, todo aquel que se registre sera cliente
 export class ClientesComponent implements OnInit {
   cliente=null;
   tacos=null;

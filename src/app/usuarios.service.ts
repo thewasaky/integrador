@@ -4,6 +4,8 @@ import { HttpClient } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
+//esta tambien es una clase muy importante, aqui se realizan todas las peticiones al servidor para la conexion a la 
+//base de datos
 export class UsuariosService {
 url="http://localhost/pruebaphp/";
   constructor(private http:HttpClient) {

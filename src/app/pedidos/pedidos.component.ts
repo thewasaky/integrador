@@ -12,6 +12,7 @@ declare var $:any;
   templateUrl: './pedidos.component.html',
   styleUrls: ['./pedidos.component.css']
 })
+//esta pagina tambien es importante, ya que aqui se pueden agregar, editar o eliminar los pedidos que se tengan para el dia siguiente
 export class PedidosComponent implements OnInit {
   pedidos=null;
   pedido={

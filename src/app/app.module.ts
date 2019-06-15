@@ -12,7 +12,7 @@ import { Services } from '@angular/core/src/view';
 import { InventarioComponent } from './inventario/inventario.component';
 import { ClientesComponent } from './clientes/clientes.component';
 
-
+//en esta clase se declaran todos los componentes y servicios
 @NgModule({
   declarations: [
     AppComponent,

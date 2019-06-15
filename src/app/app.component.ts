@@ -10,6 +10,8 @@ import * as jsPDF from 'jspdf';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+//esta es en nuestra opinion la mas importante de las clases, en esta se lleva a cabo
+//el login de la pagina, asi como el control de esa sesion
 export class AppComponent implements OnInit{
   usuarios=null;
   usuario={
@@ -26,6 +28,8 @@ export class AppComponent implements OnInit{
  LogedIn=false;
  testini=true;
  aux=0;
+ //esta parte en el constructor es muy importante, se necesita para poder usar el servicio que realizara las peticiones
+ //al servidor, y el router nos sirve para hacer redirecciones desde el codigo
   constructor(private usuariosServicio:UsuariosService,private router: Router){
     
   }
@@ -47,7 +51,15 @@ export class AppComponent implements OnInit{
 }
   ngOnInit(){
    this.obtenerUsuarios();
+   this.checkUser();
   }
+  //verifica si el usuario inicio sesion, si no es asi, lo redirige a home
+  checkUser(){
+    if(!this.LogedIn){
+      this.router.navigate(['/home']);
+    }
+  }
+  //cierra la sesion
   cerrarSesion(){
     this.LogedIn=false;
     this.usuario.idUsuario=null;
@@ -76,6 +88,7 @@ export class AppComponent implements OnInit{
     
     
   }
+  //este metodo es el que crea el estado de LogedIn
   changeLoged(){
     if(this.testini){
       

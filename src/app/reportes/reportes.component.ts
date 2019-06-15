@@ -7,6 +7,7 @@ import * as jsPDF from 'jspdf';
   templateUrl: './reportes.component.html',
   styleUrls: ['./reportes.component.css']
 })
+//en esta clase se pueden imprimir reportes de el dia anterios, de un dia en especifico, de una semana atras, y un mes atras
 export class ReportesComponent implements OnInit {
   pedidosSem = null;
   pedidosMes=null;
