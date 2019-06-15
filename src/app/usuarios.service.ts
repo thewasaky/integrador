@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 //esta tambien es una clase muy importante, aqui se realizan todas las peticiones al servidor para la conexion a la 
 //base de datos
 export class UsuariosService {
-url="http://localhost/pruebaphp/";
+url="http://localhost/APIPHP/";
   constructor(private http:HttpClient) {
    }
    obternerUsuarios(){
